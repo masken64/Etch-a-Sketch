@@ -1,5 +1,5 @@
 const gridContainer = document.querySelector('#sketchPad');
-const rows = 50;//prompt("Enter size of your sketchpad (1-100)", "");
+const rows = prompt("Enter size of your sketchpad (1-100)", ""); 
 const pixelGap = '0px';
 let currColor = 'black';
 
@@ -48,6 +48,7 @@ gridContainer.style.flexWrap = 'wrap';
 gridContainer.style.height = '600px';
 gridContainer.style.width = '600px';
 
+//creating sketchPad
 for(let i = 0; i < rows * rows; i++) {
     const pixel = document.createElement('div');
     pixel.classList.add('pixel');
@@ -55,7 +56,7 @@ for(let i = 0; i < rows * rows; i++) {
     pixel.style.flexBasis = `calc(100% / ${rows} - ${parseFloat(pixelGap) * 2}px)`; 
     pixel.style.height = `calc(100% / ${rows} - ${parseFloat(pixelGap) * 2}px)`;
     pixel.style.width = `calc(100% / ${rows} - ${parseFloat(pixelGap) * 2}px)`;  
-    pixel.style.boxSizing = 'border-box'; 
+    pixel.style.boxSizing = 'border-box'; //makes sure padding and border are included in the size of the pixel div
     pixel.style.margin = pixelGap; 
     gridContainer.appendChild(pixel);
 }
@@ -70,7 +71,9 @@ pixel.forEach((pixel) => {
 
 const reloadPage = document.querySelector('#reset');
 reloadPage.addEventListener('click', function() {
-    location.reload();
+    pixel.forEach((pixel) => {
+        pixel.style.backgroundColor = 'white';
+    });
 });
 
 reloadPage.addEventListener('mouseover', function() {
